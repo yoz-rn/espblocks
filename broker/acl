@@ -1,0 +1,6 @@
+# setiap perangkat hanya boleh menulis ke topiknya sendiri
+pattern write espblocks/%u/telemetry
+
+# backend hanya boleh membaca telemetri semua perangkat
+user backend
+topic read espblocks/+/telemetry

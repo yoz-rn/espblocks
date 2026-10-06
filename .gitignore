@@ -6,3 +6,6 @@
 
 sdkconfig.*
 !/sdkconfig.defaults
+
+secrets
+!secrets/passgen.sh
