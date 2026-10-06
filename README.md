@@ -100,11 +100,11 @@ This project is developed in phases, each with a clear "done when" condition. No
 
 ### Phase 1: Proof of Concept & TLS
 Focus on getting a device to talk to a broker securely.
-- [ ] **Project Setup:** PlatformIO hybrid project, secrets kept out of Git, custom partition table
+- [x] **Project Setup:** PlatformIO hybrid project, secrets kept out of Git, custom partition table
 - [ ] **Wi-Fi with Auto-Reconnect:** Credentials come from NVS, never from the source code
 - [ ] **NTP Sync:** Time is synced before any TLS connection is opened
 - [ ] **Local Broker:** Mosquitto with TLS, username/password, and per-device ACL
-- [ ] **MQTTS Publish:** `esp-mqtt` over port 8883 with certificate verification
+- [x] **MQTTS Publish:** `esp-mqtt` over port 8883 with certificate verification
 - [ ] **Dummy Telemetry Task:** A FreeRTOS task producing JSON at a fixed interval
 - [ ] **Measurements:** Free heap after TLS, outbox size, default `MAX_PAYLOAD_BYTES`
 

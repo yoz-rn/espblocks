@@ -7,5 +7,8 @@
 sdkconfig.*
 !/sdkconfig.defaults
 
-secrets
-!secrets/passgen.sh
+secrets/*
+!secrets/passwdgen.sh
+!secrets/provisioning.example.csv
+
+logs/*
