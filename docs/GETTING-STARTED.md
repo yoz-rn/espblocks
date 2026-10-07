@@ -3,7 +3,7 @@
 How to reproduce the current state of espblocks from scratch: a local MQTT broker with TLS, per-device accounts and ACL, plus an ESP32 that reads its provisioned settings from flash.
 
 > **Where the project is today**
-> This guide covers **Phase 1, up to the provisioning check**. The ESP32 does **not** connect to Wi-Fi or the broker yet, and nothing is signed yet. Those steps will be added as the phases are completed. See the [roadmap in the README](../README.md#roadmap--milestones) and the [PRD](PRD.md).
+> This guide covers **Phase 1, up to the provisioning check**. The ESP32 does **not** connect to Wi-Fi or the broker yet, and nothing is signed yet. Those steps will be added as the phases are completed. See the [roadmap in the README](../README.md#roadmap--milestones)
 
 > **Tested on:** Linux Mint (Debian/Ubuntu family), Mosquitto 2.x, VS Code with the PlatformIO extension, ESP32 DevKitC board. Windows and macOS are untested.
 
