@@ -6,6 +6,7 @@
 
 sdkconfig.*
 !/sdkconfig.defaults
+nvs_flash.sh
 
 secrets/*
 !secrets/passwdgen.sh
