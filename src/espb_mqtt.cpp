@@ -50,7 +50,7 @@ esp_err_t espb_mqtt_start(const Espbconfig *cfg) {
     if (cfg == NULL) return ESP_ERR_INVALID_ARG;
     if (s_client != NULL) return ESP_ERR_INVALID_STATE;
 
-    if (espb_time_is_valid()) {
+    if (!espb_time_is_valid()) {
         ESP_LOGE(TAG, "clock not valid");
         return ESP_ERR_INVALID_STATE;
     }

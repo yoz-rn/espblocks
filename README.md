@@ -48,8 +48,6 @@ An ESP32 generates dummy telemetry, **signs every message on the device** (ECDSA
 | Physical access to the ESP32 (key extraction) | ❌ | Out of scope, see Phase 5 |
 | Tampered sensor or wiring ("garbage in, garbage out") | ❌ | Out of scope |
 
-The full threat model lives in [docs/PRD.md](docs/PRD.md).
-
 ## Message format
 
 Each MQTT message is two lines. The first line is the JSON, the second is the signature in hex:
@@ -103,7 +101,7 @@ Focus on getting a device to talk to a broker securely.
 - [x] **Project Setup:** PlatformIO hybrid project, secrets kept out of Git, custom partition table
 - [x] **Wi-Fi with Auto-Reconnect:** Credentials come from NVS, never from the source code
 - [ ] **NTP Sync:** Time is synced before any TLS connection is opened
-- [ ] **Local Broker:** Mosquitto with TLS, username/password, and per-device ACL
+- [x] **Local Broker:** Mosquitto with TLS, username/password, and per-device ACL
 - [ ] **MQTTS Publish:** `esp-mqtt` over port 8883 with certificate verification
 - [ ] **Dummy Telemetry Task:** A FreeRTOS task producing JSON at a fixed interval
 - [ ] **Measurements:** Free heap after TLS, outbox size, default `MAX_PAYLOAD_BYTES`
