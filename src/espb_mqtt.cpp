@@ -11,6 +11,8 @@ static volatile bool s_connected = false;
 static char s_uri[96];
 static char s_topic[96];
 
+static volatile uint32_t s_acked = 0;
+
 static void on_mqtt_event(void *arg, esp_event_base_t base, int32_t id, void *data) {
     esp_mqtt_event_handle_t ev = (esp_mqtt_event_handle_t)data;
     switch ((esp_mqtt_event_id_t)id)
@@ -26,6 +28,7 @@ static void on_mqtt_event(void *arg, esp_event_base_t base, int32_t id, void *da
         break;
     
     case MQTT_EVENT_PUBLISHED:
+        s_acked++;
         ESP_LOGI(TAG, "broker acknowledged msg_id=%d", ev->msg_id);
         break;
 
@@ -80,3 +83,5 @@ int espb_mqtt_publish(const char *data, size_t len) {
     if (s_client == NULL || data == NULL) return -1;
     return esp_mqtt_client_enqueue(s_client, s_topic, data, (int)len, 1, 0, true);
 }
+
+uint32_t espb_mqtt_acked_count(void) { return s_acked; }

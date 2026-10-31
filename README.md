@@ -15,9 +15,9 @@
 
 ```
 
-# PROJECT SUMMARY
+> This project idea came to me while I was taking a ~sh*t~ in a bathroom without an android on my hand (I was forced to reflect on my life journey)
 
-> Because "the data is fine, trust me" is not a security model.
+# PROJECT SUMMARY
 
 **espblocks** is a proof-of-concept IoT telemetry pipeline that tries to answer one question: *can you prove that a piece of sensor data really came from your device, and that nobody quietly edited it afterwards?*
 
@@ -94,17 +94,17 @@ The signed bytes are everything before the last newline, and the backend verifie
 
 # ROADMAP & MILESTONES
 
-This project is developed in phases, each with a clear "done when" condition. Nothing is checked yet: the planning is done, the building starts now.
+This project is developed in phases, each with a clear "done when" condition.
 
 ### Phase 1: Proof of Concept & TLS
 Focus on getting a device to talk to a broker securely.
 - [x] **Project Setup:** PlatformIO hybrid project, secrets kept out of Git, custom partition table
 - [x] **Wi-Fi with Auto-Reconnect:** Credentials come from NVS, never from the source code
-- [ ] **NTP Sync:** Time is synced before any TLS connection is opened
+- [x] **NTP Sync:** Time is synced before any TLS connection is opened
 - [x] **Local Broker:** Mosquitto with TLS, username/password, and per-device ACL
-- [ ] **MQTTS Publish:** `esp-mqtt` over port 8883 with certificate verification
-- [ ] **Dummy Telemetry Task:** A FreeRTOS task producing JSON at a fixed interval
-- [ ] **Measurements:** Free heap after TLS, outbox size, default `MAX_PAYLOAD_BYTES`
+- [x] **MQTTS Publish:** `esp-mqtt` over port 8883 with certificate verification
+- [x] **Dummy Telemetry Task:** A FreeRTOS task producing JSON at a fixed interval
+- [x] **Measurements:** Free heap after TLS, outbox size, default `MAX_PAYLOAD_BYTES`
 
 *Done when* dummy messages reach the broker over TLS, Wireshark shows no plaintext, and the measurements are recorded.
 
@@ -149,26 +149,7 @@ Things deliberately left out of this PoC. Pull requests, forks, and experiments 
 
 # GETTING STARTED
 
-> [!IMPORTANT]
-> The firmware and backend don't exist yet. This section will be filled in as each phase is completed. Below is what you will need.
-
-## What you need
-
-* [VS Code](https://code.visualstudio.com/) with the [PlatformIO](https://platformio.org/platformio-ide) extension
-* [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/)
-* [Mosquitto](https://mosquitto.org/) and OpenSSL, for the local broker and its certificates
-* An ESP32 board (developed on a DevKitC V4) and a USB cable that can carry data, not just power
-* Wireshark, if you want to repeat the security tests
-
-## Planned steps
-
-1. **Get the project:** clone the repository
-2. **Set up the broker:** generate a CA and certificates, configure users and ACL *(Phase 1)*
-3. **Provide your secrets:** Wi-Fi and MQTT credentials, root CA, and device ID go into an NVS image built from a CSV that stays out of Git *(Phase 1)*
-4. **Build and upload the firmware** *(Phase 1)*
-5. **Register your device's public key** with the backend *(Phase 3)*
-6. **Start the backend and watch the data flow** *(Phase 3)*
+See [GETTING-STARTED.md](docs/GETTING-STARTED.md) for more details.
 
 # KNOWN LIMITATIONS
 

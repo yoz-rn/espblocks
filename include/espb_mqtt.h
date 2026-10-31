@@ -20,6 +20,8 @@ bool espb_mqtt_is_connected(void);
  */
 int espb_mqtt_publish(const char *data, size_t len);
 
+uint32_t espb_mqtt_acked_count(void);
+
 #ifdef __cplusplus
 }
 #endif

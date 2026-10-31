@@ -5,6 +5,7 @@
 #include "espb_net.h"
 #include "espb_time.h"
 #include "espb_mqtt.h"
+#include "espb_telemetry.h"
 
 #ifndef ESPBLOCKS_VERSION
 #define ESPBLOCKS_VERSION "dev-unversioned"
@@ -138,14 +139,17 @@ void loop() {
 
   case Stage::WAIT_MQTT:
     if (espb_mqtt_is_connected()) {
-      const char *hello = "hello";
-      int id = espb_mqtt_publish(hello, strlen(hello));
-      ESP_LOGI(TAG, "queued test message: id=%d", id);
-      log_heap("mqtt connected");
-      enter(Stage::RUNNING);
+      esp_err_t err = espb_telemetry_start(&g_cfg, NULL); // NULL = built-in dummy data
+      if (err != ESP_OK) {
+        ESP_LOGE(TAG, "telemetry start failed: %s", esp_err_to_name(err));
+        enter(Stage::FAILED);
+      } else {
+        log_heap("telemetry started");
+        enter(Stage::RUNNING);
+      }
     } else if (due(g_last_warn_ms, WARN_EVERY_MS)) {
-      ESP_LOGW(TAG, "mqtt not connected yet (%lu s), client keeps retrying", (unsigned long)seconds_in_stage());
-      g_last_warn_ms = millis();
+        ESP_LOGW(TAG, "mqtt not connected yet (%lu s), the client keeps retrying", (unsigned long)seconds_in_stage());
+        g_last_warn_ms = millis();
     }
     break;
 
