@@ -1,0 +1,6 @@
+# Name,    Type, SubType, Offset,   Size
+nvs,       data, nvs,     0x9000,   0x6000,
+prov,      data, nvs,     0xF000,   0x4000,
+state,     data, nvs,     0x13000,  0x4000,
+phy_init,  data, phy,     0x19000,  0x1000,
+factory,   app,  factory, 0x20000,  0x1E0000,
